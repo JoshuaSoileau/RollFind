@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const BASE_URL = "https://api.open5e.com/search";
 

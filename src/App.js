@@ -3,7 +3,7 @@ import Input from "./components/Input";
 
 function App() {
   return (
-    <div className="App">
+    <div className="flex flex-col justify-center items-center h-screen w-screen flex-wrap">
       <Input />
     </div>
   );

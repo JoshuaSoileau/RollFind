@@ -8834,7 +8834,7 @@ postcss@^7, postcss@^7.0.0, postcss@^7.0.1, postcss@^7.0.14, postcss@^7.0.17, po
     source-map "^0.6.1"
     supports-color "^6.1.0"
 
-postcss@^8.1.0, postcss@^8.1.6:
+postcss@^8.1.0, postcss@^8.1.6, postcss@^8.1.8:
   version "8.1.8"
   resolved "https://registry.yarnpkg.com/postcss/-/postcss-8.1.8.tgz#697439e7276735ecdd2893d2cf8efb2236693ac3"
   integrity sha512-hO6jFWBy0QnBBRaw+s0F4hVPKGDICec/nLNEG1D4qqw9/LBzWMkTjckqqELXAo0J42jN8GFZXtgQfezEaoG9gQ==
@@ -10516,6 +10516,16 @@ table@^5.2.3:
     lodash "^4.17.14"
     slice-ansi "^2.1.0"
     string-width "^3.0.0"
+
+tailwindcss-empty@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/tailwindcss-empty/-/tailwindcss-empty-1.0.0.tgz#cd05249fc01da77b20ea949b2bed10dd3ed6ea6a"
+  integrity sha512-Fy2ZQxIf4P0kqY4j99hp92tY88/q5wjTcRGIC2Er45iwYxw411dWQLIkvASqmpJQSVR6e4NLWLYmU808TG5cpQ==
+
+tailwindcss-truncate-multiline@^1.0.3:
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/tailwindcss-truncate-multiline/-/tailwindcss-truncate-multiline-1.0.3.tgz#de3ccb99a5a44ab042dd447be640776e4753ed23"
+  integrity sha512-YsF5Nn2lQUCJECbU99dMDJ/XhrG8RKbSYXPmvoHnldB+HG/H8vJUqB+b5HKapvT26aQotdZLjJpC8YBGrWU12A==
 
 tailwindcss@^2.0.1:
   version "2.0.1"
