@@ -79,7 +79,3 @@ const targets = {
 export const getTypeInfo = (type, target = "bg-color") => {
   return targets[target]?.[type] || targets[target]?.default || "";
 };
-
-export default {
-  getTypeInfo,
-};
