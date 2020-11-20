@@ -12,7 +12,7 @@ const useFetchApi = (value) => {
 
   useEffect(() => {
     if (value.length < 4) {
-      setResponse({});
+      // setResponse({});
       return "";
     }
     const abortController = new AbortController();
@@ -25,8 +25,11 @@ const useFetchApi = (value) => {
           signal: abortController.signal,
         })
         .then((res) => res.json())
-        .then((response) => setResponse(response))
-        .catch((e) => setResponse(e));
+        .then((response) => {
+          const results = response?.results;
+          if (results?.length) setResponse(response);
+        })
+        .catch(() => {});
     }
 
     return function cancel() {

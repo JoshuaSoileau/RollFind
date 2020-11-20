@@ -4,28 +4,49 @@ import { useEffect, useState } from "react";
 import useFetchApi from "./hooks/useFetchApi";
 import Suggestions from "./components/Suggestions";
 import { classnames } from "./utils";
+import useDebouncedEffect from "./hooks/useDebouncedEffect";
 
 function App() {
   const [value, setValue] = useState("");
   const [search, setSearch] = useState("");
+  const [shouldOpen, setShouldOpen] = useState("");
   const [panelOpen, setPanelOpen] = useState(false);
   const data = useFetchApi(search);
   const hasResults = Boolean(data?.results?.length);
 
-  useEffect(() => value.length > 4 && setSearch(value), [value]);
+  useDebouncedEffect(
+    () => {
+      setSearch(value);
+    },
+    400,
+    [value]
+  );
+
+  useEffect(() => {
+    if (value?.length < 3) setShouldOpen(false);
+  }, [value]);
+
+  useEffect(() => {
+    if (data?.results?.length) {
+      setShouldOpen(true);
+    } else {
+      setShouldOpen(false);
+    }
+  }, [data]);
+
   useEffect(() => setPanelOpen(false), [data]);
 
   const className = classnames(
     "transition duration-500 ease-in-out transform",
     "max-w-full",
-    hasResults && "-translate-y-32 delay-100",
+    shouldOpen && "-translate-y-32 delay-100",
     panelOpen && "pr-96"
   );
   const headerClassName = classnames(
     "header  text-center",
     "mb-12",
     "transition duration-500 ease-in-out",
-    hasResults && "opacity-0 transform scale-95 translate-y-4"
+    shouldOpen && "opacity-0 transform scale-95 translate-y-4"
     // !hasResults && "delay-100"
   );
 
@@ -44,7 +65,11 @@ function App() {
         <div className={className}>
           <div className="w-96 max-w-full relative">
             <Input value={value} setSearch={setSearch} setValue={setValue} />
-            <Suggestions data={data} setPanelOpen={setPanelOpen} />
+            <Suggestions
+              data={data}
+              setPanelOpen={setPanelOpen}
+              shouldOpen={shouldOpen}
+            />
           </div>
         </div>
       </div>
