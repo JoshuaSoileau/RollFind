@@ -1,7 +1,6 @@
-import React, { useEffect, useLayoutEffect, useRef, useState } from "react";
+import React from "react";
 import { classnames } from "../../utils";
 import Button from "./Button";
-const DEBUG = false;
 const MAX_SUGGESTION_HEIGHT = 384;
 
 const Suggestions = ({ data, setPanelItem, shouldOpen }) => {
