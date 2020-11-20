@@ -3,7 +3,7 @@ import React from "react";
 const Input = ({ value, setSearch, setValue }) => {
   return (
     <input
-      className="rounded-lg w-full leading-6 text-4 p-5 px-8 outline-none shadow-none focus:shadow-2xl  transition duration-500 ease-in-out"
+      className="rounded-lg w-full leading-6 text-4 p-5 px-8 outline-none shadow-lg focus:shadow-2xl  transition duration-500 ease-in-out border border-solid border-gray-100"
       type="search"
       value={value}
       placeholder="Wizards, Potion of Healing, Fireball..."

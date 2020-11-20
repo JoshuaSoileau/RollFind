@@ -1,18 +1,25 @@
 import "./styles/tailwind.css";
 import Input from "./components/Input";
+import Panel from "./components/Panel";
 import { useEffect, useState } from "react";
 import useFetchApi from "./hooks/useFetchApi";
 import Suggestions from "./components/Suggestions";
 import { classnames } from "./utils";
 import useDebouncedEffect from "./hooks/useDebouncedEffect";
 
+const useValue = (initial) => useState(initial);
+const useSearch = (initial) => useState(initial);
+const useShouldOpen = (initial) => useState(initial);
+const usePanelItem = (initial) => useState(initial);
+const usePanelOpen = (initial) => useState(initial);
+
 function App() {
-  const [value, setValue] = useState("");
-  const [search, setSearch] = useState("");
-  const [shouldOpen, setShouldOpen] = useState("");
-  const [panelOpen, setPanelOpen] = useState(false);
+  const [value, setValue] = useValue("");
+  const [search, setSearch] = useSearch("");
+  const [shouldOpen, setShouldOpen] = useShouldOpen("");
+  const [panelItem, setPanelItem] = usePanelItem({});
+  const [panelOpen, setPanelOpen] = usePanelOpen(false);
   const data = useFetchApi(search);
-  const hasResults = Boolean(data?.results?.length);
 
   useDebouncedEffect(
     () => {
@@ -23,31 +30,43 @@ function App() {
   );
 
   useEffect(() => {
-    if (value?.length < 3) setShouldOpen(false);
-  }, [value]);
+    if (!panelItem || !Object.keys(panelItem).length) {
+      setPanelOpen(false);
+      return;
+    }
+    setPanelOpen(true);
+  }, [setPanelOpen, panelItem]);
+
+  useEffect(() => {
+    if (value?.length < 3) {
+      setShouldOpen(false);
+      setPanelOpen(false);
+    }
+  }, [setShouldOpen, setPanelOpen, value]);
 
   useEffect(() => {
     if (data?.results?.length) {
       setShouldOpen(true);
     } else {
       setShouldOpen(false);
+      setPanelOpen(false);
     }
-  }, [data]);
+  }, [setShouldOpen, setPanelOpen, data]);
 
-  useEffect(() => setPanelOpen(false), [data]);
+  useEffect(() => setPanelOpen(false), [setPanelOpen, data]);
 
   const className = classnames(
-    "transition duration-500 ease-in-out transform",
-    "max-w-full",
+    "transition-all duration-500 ease-in-out transform",
+    "flex justify-center",
+    "w-full",
     shouldOpen && "-translate-y-32 delay-100",
-    panelOpen && "pr-96"
+    panelOpen && "md:pr-1/2"
   );
   const headerClassName = classnames(
     "header  text-center",
     "mb-12",
     "transition duration-500 ease-in-out",
     shouldOpen && "opacity-0 transform scale-95 translate-y-4"
-    // !hasResults && "delay-100"
   );
 
   return (
@@ -67,11 +86,16 @@ function App() {
             <Input value={value} setSearch={setSearch} setValue={setValue} />
             <Suggestions
               data={data}
-              setPanelOpen={setPanelOpen}
+              setPanelItem={setPanelItem}
               shouldOpen={shouldOpen}
             />
           </div>
         </div>
+        <Panel
+          item={panelItem}
+          isOpen={panelOpen}
+          setPanelItem={setPanelItem}
+        />
       </div>
     </>
   );

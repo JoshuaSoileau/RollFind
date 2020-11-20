@@ -7,3 +7,9 @@ export function classnames(...args) {
 
   return args.filter(Boolean).join(" ");
 }
+
+export const newlineToPtag = (str) => {
+  return str
+    ?.replace(/^(?!<p>)(.*)(?!<\/p>)$/gm, "<p class='empty:hidden'>$1</p>")
+    ?.replace(/<p>(.*)<\/p>/, "$1");
+};

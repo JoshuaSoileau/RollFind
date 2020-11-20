@@ -2,7 +2,7 @@ import React from "react";
 import { getTypeInfo } from "./constants/types";
 import { newlineToBreakTag } from "../../utils";
 
-const Button = ({ item }) => {
+const Button = ({ item, onClick }) => {
   const className = [
     "p-4 px-5 text-left text-sm",
     "w-full",
@@ -26,11 +26,7 @@ const Button = ({ item }) => {
   const icon = getTypeInfo(item?.route, "icon");
 
   return (
-    <button
-      type="button"
-      className={className}
-      onClick={() => console.log(item)}
-    >
+    <button type="button" className={className} onClick={onClick}>
       <div className="info">
         <strong className="mb-2 inline-block">
           {item?.name || item?.slug}

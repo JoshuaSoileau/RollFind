@@ -1,3 +1,4 @@
+const plugin = require("tailwindcss/plugin");
 const defaultTheme = require("tailwindcss/defaultTheme");
 
 module.exports = {
@@ -9,6 +10,10 @@ module.exports = {
       },
       fontSize: {
         "2xs": ["0.7rem", ".85rem"],
+      },
+      spacing: {
+        "1/2": "50%",
+        "2/3": "66.66%",
       },
       transitionProperty: {
         height: "height",
@@ -32,7 +37,13 @@ module.exports = {
   },
   plugins: [
     require("@tailwindcss/typography"),
-    require("tailwindcss-empty")(),
     require("tailwindcss-truncate-multiline")(),
+    plugin(({ addVariant, e }) => {
+      addVariant("empty", ({ modifySelectors, separator }) => {
+        modifySelectors(({ className }) => {
+          return `.empty${e(separator + className)}:empty`;
+        });
+      });
+    }),
   ],
 };

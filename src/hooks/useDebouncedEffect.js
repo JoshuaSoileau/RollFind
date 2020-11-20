@@ -1,3 +1,7 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+/**
+ * Taken from: https://github.com/samanmohamadi/use-debounced-effect/blob/master/src/index.js
+ */
 import { useEffect, useRef } from "react";
 
 export function useDebouncedEffect(callback, delay, deps = []) {
