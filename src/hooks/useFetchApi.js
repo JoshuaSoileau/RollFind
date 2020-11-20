@@ -11,7 +11,10 @@ const useFetchApi = (value) => {
   const [response, setResponse] = useState({});
 
   useEffect(() => {
-    if (value.length < 4) return "";
+    if (value.length < 4) {
+      setResponse({});
+      return "";
+    }
     const abortController = new AbortController();
 
     if (window) {

@@ -5,6 +5,10 @@ module.exports = {
       fontSize: {
         "2xs": ["0.7rem", ".85rem"],
       },
+      transitionProperty: {
+        height: "height",
+        spacing: "margin, padding",
+      },
     },
     truncate: {
       lines: {

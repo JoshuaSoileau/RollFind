@@ -33,7 +33,9 @@ const Button = ({ item }) => {
       <p
         className="description truncate-3-lines text-2xs"
         dangerouslySetInnerHTML={{
-          __html: newlineToBreakTag(item?.description || item?.text),
+          __html: newlineToBreakTag(
+            item?.highlighted || item?.description || item?.text
+          ),
         }}
       />
 
