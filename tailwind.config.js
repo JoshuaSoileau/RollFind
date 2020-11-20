@@ -1,7 +1,12 @@
+const defaultTheme = require("tailwindcss/defaultTheme");
+
 module.exports = {
   purge: ["./src/**/*.js"],
   theme: {
     extend: {
+      fontFamily: {
+        sans: ["Noto Sans", ...defaultTheme.fontFamily.sans],
+      },
       fontSize: {
         "2xs": ["0.7rem", ".85rem"],
       },
@@ -19,17 +24,14 @@ module.exports = {
     },
   },
   variants: {
-    display: ["responsive", "empty"],
-    opacity: [
-      "responsive",
-      "group-hover",
-      "focus-within",
-      "hover",
-      "focus",
-      "empty",
-    ],
+    extend: {
+      display: ["empty"],
+      margin: ["first", "last"],
+      opacity: ["empty"],
+    },
   },
   plugins: [
+    require("@tailwindcss/typography"),
     require("tailwindcss-empty")(),
     require("tailwindcss-truncate-multiline")(),
   ],

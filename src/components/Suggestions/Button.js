@@ -1,5 +1,5 @@
 import React from "react";
-import { getTypeInfo } from "../../constants/types";
+import { getTypeInfo } from "./constants/types";
 import { newlineToBreakTag } from "../../utils";
 
 const Button = ({ item }) => {
@@ -7,6 +7,8 @@ const Button = ({ item }) => {
     "p-4 px-5 text-left text-sm",
     "w-full",
     "rounded-lg",
+    "bg-opacity-70",
+    "flex flex-row justify-between  items-center",
     getTypeInfo(item?.route, "bg-color"),
     getTypeInfo(item?.route, "text-color"),
   ].join(" ");
@@ -29,27 +31,32 @@ const Button = ({ item }) => {
       className={className}
       onClick={() => console.log(item)}
     >
-      <strong>{item?.name || item?.slug}</strong>
-      <p
-        className="description truncate-3-lines text-2xs"
-        dangerouslySetInnerHTML={{
-          __html: newlineToBreakTag(
-            item?.highlighted || item?.description || item?.text
-          ),
-        }}
-      />
+      <div className="info">
+        <strong className="mb-2 inline-block">
+          {item?.name || item?.slug}
+        </strong>
+        <p
+          className="description truncate-3-lines text-2xs"
+          dangerouslySetInnerHTML={{
+            __html: newlineToBreakTag(
+              item?.highlighted || item?.description || item?.text
+            ),
+          }}
+        />
 
-      <strong className={tileTitleClass}>
-        {icon ? (
-          <span
-            className="w-4 mr-2 text-white"
-            dangerouslySetInnerHTML={{ __html: icon }}
-          />
-        ) : (
-          ""
-        )}
-        <span>{getTypeInfo(item?.route, "tile-title")}</span>
-      </strong>
+        <strong className={tileTitleClass}>
+          {icon ? (
+            <span
+              className="w-4 mr-2 text-white"
+              dangerouslySetInnerHTML={{ __html: icon }}
+            />
+          ) : (
+            ""
+          )}
+          <span>{getTypeInfo(item?.route, "tile-title")}</span>
+        </strong>
+      </div>
+      <div className="cta"></div>
     </button>
   );
 };
