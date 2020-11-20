@@ -12,13 +12,13 @@ function App() {
   const data = useFetchApi(search);
   const hasResults = Boolean(data?.results?.length);
 
-  useEffect(() => setSearch(value), [value]);
+  useEffect(() => value.length > 4 && setSearch(value), [value]);
   useEffect(() => setPanelOpen(false), [data]);
 
   const className = classnames(
     "transition duration-500 ease-in-out transform",
     "max-w-full",
-    hasResults && "-translate-y-32 md:-translate-y-48 delay-100",
+    hasResults && "-translate-y-32 delay-100",
     panelOpen && "pr-96"
   );
   const headerClassName = classnames(
