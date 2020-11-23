@@ -4,7 +4,7 @@ import Panel from "./components/Panel";
 import { useEffect, useState } from "react";
 import useFetchApi from "./hooks/useFetchApi";
 import Suggestions from "./components/Suggestions";
-import { classnames, fadeBlipClassName } from "./utils";
+import { classnames } from "./utils";
 import useDebouncedEffect from "./hooks/useDebouncedEffect";
 import QuickSearch from "./components/QuickSearch";
 import Header from "./components/Header";
@@ -32,7 +32,7 @@ function App() {
   const [panelOpen, setPanelOpen] = usePanelOpen(false);
   const data = useFetchApi(search);
 
-  useEffect(() => setShouldOpen(false), []);
+  useEffect(() => setShouldOpen(false), [setShouldOpen]);
 
   useDebouncedEffect(
     () => {
