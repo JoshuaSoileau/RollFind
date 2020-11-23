@@ -18,7 +18,7 @@ const Input = ({ value, setSearch, setValue }) => {
     <div className="input relative">
       <input
         className={className}
-        type="search"
+        type="text"
         value={value}
         placeholder="Wizards, Potion of Healing, Fireball..."
         onBlur={() => setSearch("")}

@@ -12,7 +12,7 @@ const Suggestions = ({ data, setPanelItem, shouldOpen }) => {
     "absolute top-full inset-x-0 z-10",
     "overflow-auto",
     "rounded-xl mt-4",
-    "transition-all duration-500",
+    "transition-all duration-500 transform",
     !hasResults && "opacity-0 scale-95"
   );
 

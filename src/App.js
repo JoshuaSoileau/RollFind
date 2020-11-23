@@ -89,9 +89,9 @@ function App() {
   });
 
   const className = classnames(
-    "flex justify-center",
-    "w-full",
-    shouldOpen && "-translate-y-32 delay-100",
+    "flex justify-center relative z-10",
+    "w-full transform duration-500 ease-in-out",
+    shouldOpen && "-translate-y-56 delay-100",
     panelOpen && "md:pr-1/2"
   );
 
