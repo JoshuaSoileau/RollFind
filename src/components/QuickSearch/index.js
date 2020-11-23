@@ -14,13 +14,18 @@ const QuickSearchOptions = [
 ];
 
 const QuickSearch = ({ shouldOpen, setValue }) => {
+  const containerClass = classnames(
+    "quick-search mt-16 text-center max-w-xl",
+    shouldOpen && "pointer-events-none",
+    fadeBlipClassName(!shouldOpen)
+  );
   const quicksearchItemClassName = classnames(
     "inline-block m-1",
     fadeBlipClassName(!shouldOpen)
   );
 
   return (
-    <div className="quick-search mt-16 text-center max-w-xl">
+    <div className={containerClass}>
       Or, try these:
       <ul className="mt-3">
         {QuickSearchOptions.map((option, index) => (

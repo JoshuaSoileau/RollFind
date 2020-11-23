@@ -2,6 +2,8 @@ export const newlineToBreakTag = (str) => {
   return str?.trim()?.replace(/(?:\r\n|\r|\n)/g, "<br>");
 };
 
+export const legiblize = (str) => str.replaceAll("_", " ");
+
 export function classnames(...args) {
   if (!args || !args?.length) return "";
 

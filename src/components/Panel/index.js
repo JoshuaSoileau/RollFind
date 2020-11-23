@@ -1,6 +1,20 @@
 import React, { useState } from "react";
 import { classnames, newlineToPtag } from "../../utils";
 import { getTypeInfo } from "../Suggestions/constants/types";
+import AttributeTile from "./AttributeTile";
+
+const attributes = [
+  "hit_points",
+  "armor_class",
+  "strength",
+  "dexterity",
+  "constitution",
+  "wisdom",
+  "charisma",
+  "level",
+  "school",
+  "type",
+];
 
 const Panel = ({ item, isOpen, setPanelItem }) => {
   const [debug, setDebug] = useState(false);
@@ -14,11 +28,11 @@ const Panel = ({ item, isOpen, setPanelItem }) => {
     "bg-gray-800 text-white",
     "px-6 md:px-0  py-0 md:py-16",
     "rounded-t-3xl md:rounded-3xl",
-    isOpen && " h-2/3 md:h-auto md:w-1/2  md:px-12  py-12"
+    isOpen && " h-2/3 md:h-auto md:w-1/2  md:px-12  py-12 pb-0"
   );
 
   const contentClass = classnames(
-    "prose-sm flex flex-col flex-nowrap max-h-full white",
+    "prose-sm flex flex-col flex-nowrap max-h-full white  h-full",
     "transition-all duration-500 ease-in-out",
     isOpen && "opacity-1 scale-95 delay-100"
   );
@@ -47,7 +61,7 @@ const Panel = ({ item, isOpen, setPanelItem }) => {
         <div className="flex flex-row items-start">
           {icon ? (
             <span
-              className={`inline-block w-1/3 md:w-1/6 mr-4 md:mr-12 ${getTypeInfo(
+              className={`inline-block w-1/4 md:w-1/6 mr-4 md:mr-12 ${getTypeInfo(
                 item?.route,
                 "text-color"
               )}`}
@@ -75,14 +89,21 @@ const Panel = ({ item, isOpen, setPanelItem }) => {
           </div>
         </div>
         {debug ? (
-          <pre>
+          <pre className="max-h-48 overflow-scroll bg-gray-700">
             <code>{JSON.stringify(item, 0, 4)}</code>
           </pre>
         ) : (
           ""
         )}
 
-        <h2 className="description font-extrabold flex-auto">Description</h2>
+        {/* The attribute tiles */}
+        <div className="grid grid-cols-3 md:grid-cols-6 gap-3 empty:hidden mt-6">
+          {attributes.map((attr, index) => (
+            <AttributeTile item={item} key={attr} name={attr} index={index} />
+          ))}
+        </div>
+
+        <h2 className="description font-extrabold flex-0">Description</h2>
         <div
           className="flex-1 overflow-scroll"
           dangerouslySetInnerHTML={{ __html: text }}

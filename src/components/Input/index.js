@@ -1,7 +1,13 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { classnames } from "../../utils";
 
 const Input = ({ value, setSearch, setValue }) => {
+  const [isFocus, setIsFocus] = useState(false);
+
+  useEffect(() => {
+    setIsFocus(value.length >= 3);
+  }, [value]);
+
   const className = classnames(
     "w-full",
     "leading-6 text-4 p-5",
@@ -11,7 +17,8 @@ const Input = ({ value, setSearch, setValue }) => {
     "shadow-white-lg focus:shadow-white-2xl",
     "transition duration-500 ease-in-out",
     "border-b-4 border-solid border-white",
-    "text-white"
+    "text-white",
+    isFocus && "border-pink-400"
   );
 
   return (
@@ -21,12 +28,23 @@ const Input = ({ value, setSearch, setValue }) => {
         type="text"
         value={value}
         placeholder="Wizards, Potion of Healing, Fireball..."
-        onBlur={() => setSearch("")}
-        onFocus={() => setSearch(value)}
-        onChange={({ target }) => setValue(target.value)}
+        onBlur={() => {
+          if (!value) setIsFocus(false);
+        }}
+        onFocus={() => {
+          setSearch(value);
+          setIsFocus(true);
+        }}
+        onChange={({ target }) => {
+          setValue(target.value);
+        }}
       />
 
-      <span className="absolute flex items-center inset-y-0 pointer-events-none">
+      <span
+        className={`absolute flex items-center inset-y-0 pointer-events-none transition-all duration-500 ease-in-out ${
+          isFocus ? "text-pink-400" : ""
+        }`}
+      >
         <svg
           fill="none"
           height="24"

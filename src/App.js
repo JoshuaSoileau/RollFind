@@ -91,7 +91,7 @@ function App() {
   const className = classnames(
     "flex justify-center relative z-10",
     "w-full transform duration-500 ease-in-out",
-    shouldOpen && "-translate-y-56 delay-100",
+    shouldOpen && "-translate-y-64 delay-100",
     panelOpen && "md:pr-1/2"
   );
 

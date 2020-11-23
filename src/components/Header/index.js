@@ -19,8 +19,11 @@ const Header = ({ shouldOpen }) => {
         rel="stylesheet"
       />
       <div className={headerClassName}>
-        <h1 className="mb-6 text-6xl font-extrabold font-sans-special">
-          🎲 Roll Find
+        <h1 className="mb-6 mt-12 md:mt-0 text-4xl md:text-6xl font-extrabold font-sans-special">
+          🎲 &nbsp;
+          <span className="text-blue-100">Roll</span>
+          &nbsp;
+          <span className="text-red-300">Find</span>
         </h1>
         <p className="text-xl mb-1">
           Quick search of basically anything ⚔️ &nbsp;D&amp;D.
