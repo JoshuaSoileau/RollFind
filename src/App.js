@@ -10,8 +10,7 @@ import useDebouncedEffect from "./hooks/useDebouncedEffect";
 const QuickSearchOptions = [
   "Sleep",
   "Suggestion",
-  "Potion of Lesser Healing",
-  "Potion of Greater Healing",
+  "Potion of Healing",
   "Fireball",
   "Exhaustion",
   "Starvation",
@@ -30,10 +29,12 @@ const usePanelOpen = (initial) => useState(initial);
 function App() {
   const [value, setValue] = useValue("");
   const [search, setSearch] = useSearch("");
-  const [shouldOpen, setShouldOpen] = useShouldOpen("");
+  const [shouldOpen, setShouldOpen] = useShouldOpen(true);
   const [panelItem, setPanelItem] = usePanelItem({});
   const [panelOpen, setPanelOpen] = usePanelOpen(false);
   const data = useFetchApi(search);
+
+  useEffect(() => setShouldOpen(false), []);
 
   useDebouncedEffect(
     () => {
@@ -78,7 +79,7 @@ function App() {
 
   const headerClassName = classnames(
     "header  text-center",
-    "mb-12",
+    "mb-16",
     fadeBlipClassName(!shouldOpen)
   );
 
@@ -96,8 +97,11 @@ function App() {
       />
       <div className="flex flex-col justify-start md:justify-center items-center h-screen w-screen flex-wrap bg-gray-900 p-4  overflow-hidden text-white">
         <div className={headerClassName}>
-          <h1 className="mb-4 text-3xl font-extrabold">🎲 Roll Find</h1>
-          <p>Quick search of basically anything ⚔️ &nbsp;D&amp;D.</p>
+          <h1 className="mb-6 text-6xl font-extrabold">🎲 Roll Find</h1>
+          <p className="text-xl mb-1">
+            Quick search of basically anything ⚔️ &nbsp;D&amp;D.
+          </p>
+          <p className="italic">Well, at least a lot of things...</p>
         </div>
         <div className={className}>
           <div className="w-96 max-w-full relative">
@@ -116,13 +120,13 @@ function App() {
         />
         <div className="quick-search mt-16 text-center max-w-xl">
           Or, try these:
-          <ul>
+          <ul className="mt-3">
             {QuickSearchOptions.map((option, index) => (
               <li
                 key={option}
                 className={quicksearchItemClassName}
                 style={{
-                  transitionDelay: !shouldOpen ? index * 50 + "ms" : 0,
+                  transitionDelay: !shouldOpen ? index * 50 + 400 + "ms" : 0,
                 }}
               >
                 <button

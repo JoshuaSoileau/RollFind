@@ -6,7 +6,7 @@ const Panel = ({ item, isOpen, setPanelItem }) => {
   const [debug, setDebug] = useState(false);
 
   const className = classnames(
-    "fixed",
+    "fixed z-20",
     "transition-all duration-800 ease-in-out",
     "bottom-0 h-0 left-0 right-0 md:left-auto md:top-16 md:right-16 md:bottom-16 overflow-hidden",
     "w-full md:w-0",

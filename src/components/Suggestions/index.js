@@ -10,12 +10,12 @@ const Suggestions = ({ data, setPanelItem, shouldOpen }) => {
   const containerClass = classnames(
     "absolute top-full inset-x-0 z-10",
     "overflow-auto",
-    "rounded-xl bg-white mt-4",
+    "rounded-xl mt-4",
     "transition-all duration-500",
     !hasResults && "opacity-0 scale-95"
   );
 
-  const listClass = classnames("p-4", "rounded-xl bg-white");
+  const listClass = classnames("p-4", "rounded-xl bg-gray-700");
 
   const listItemClass = classnames(
     "m-0 mb-4 last:mb-0  p-0",
