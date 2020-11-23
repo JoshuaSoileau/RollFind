@@ -1,25 +1,25 @@
 const textColors = {
-  default: "text-gray-600",
-  "monsters/": "text-purple-600",
-  "items/": "text-pink-600",
-  "magicitems/": "text-yellow-600",
-  "spells/": "text-blue-600",
+  default: "text-gray-100",
+  "monsters/": "text-purple-100",
+  "items/": "text-pink-100",
+  "magicitems/": "text-yellow-100",
+  "spells/": "text-blue-100",
 };
 
 const bgColors = {
-  default: "bg-gray-100",
-  "monsters/": "bg-purple-100",
-  "items/": "bg-pink-100",
-  "magicitems/": "bg-yellow-100",
-  "spells/": "bg-blue-100",
+  default: "bg-gray-900",
+  "monsters/": "bg-purple-900",
+  "items/": "bg-pink-900",
+  "magicitems/": "bg-yellow-900",
+  "spells/": "bg-blue-900",
 };
 
 const bgColorsDark = {
-  default: "bg-gray-600",
-  "monsters/": "bg-purple-800",
-  "items/": "bg-pink-800",
-  "magicitems/": "bg-yellow-800",
-  "spells/": "bg-blue-800",
+  default: "bg-gray-700",
+  "monsters/": "bg-purple-700",
+  "items/": "bg-pink-700",
+  "magicitems/": "bg-yellow-700",
+  "spells/": "bg-blue-700",
 };
 
 const tileTitle = {

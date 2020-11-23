@@ -73,8 +73,9 @@ module.exports = {
   variants: {
     extend: {
       display: ["empty"],
-      margin: ["first", "last"],
+      margin: ["first", "last", "empty"],
       opacity: ["empty"],
+      padding: ["empty"],
       scale: ["active", "group-hover"],
     },
   },
