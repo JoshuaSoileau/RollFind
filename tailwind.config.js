@@ -33,6 +33,7 @@ module.exports = {
       display: ["empty"],
       margin: ["first", "last"],
       opacity: ["empty"],
+      scale: ["active", "group-hover"],
     },
   },
   plugins: [

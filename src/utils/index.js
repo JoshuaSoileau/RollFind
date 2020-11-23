@@ -13,3 +13,9 @@ export const newlineToPtag = (str) => {
     ?.replace(/^(?!<p>)(.*)(?!<\/p>)$/gm, "<p class='empty:hidden'>$1</p>")
     ?.replace(/<p>(.*)<\/p>/, "$1");
 };
+
+export const fadeBlipClassName = (condition) =>
+  classnames(
+    "transition duration-500 ease-in-out",
+    !condition && "opacity-0 transform scale-95 translate-y-4"
+  );

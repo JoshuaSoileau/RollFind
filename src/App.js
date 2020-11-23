@@ -4,8 +4,22 @@ import Panel from "./components/Panel";
 import { useEffect, useState } from "react";
 import useFetchApi from "./hooks/useFetchApi";
 import Suggestions from "./components/Suggestions";
-import { classnames } from "./utils";
+import { classnames, fadeBlipClassName } from "./utils";
 import useDebouncedEffect from "./hooks/useDebouncedEffect";
+
+const QuickSearchOptions = [
+  "Sleep",
+  "Suggestion",
+  "Potion of Lesser Healing",
+  "Potion of Greater Healing",
+  "Fireball",
+  "Exhaustion",
+  "Starvation",
+  "Gnome",
+  "Orc",
+  "Kobold",
+  "Ogre",
+];
 
 const useValue = (initial) => useState(initial);
 const useSearch = (initial) => useState(initial);
@@ -56,17 +70,21 @@ function App() {
   useEffect(() => setPanelOpen(false), [setPanelOpen, data]);
 
   const className = classnames(
-    "transition-all duration-500 ease-in-out transform",
     "flex justify-center",
     "w-full",
     shouldOpen && "-translate-y-32 delay-100",
     panelOpen && "md:pr-1/2"
   );
+
   const headerClassName = classnames(
     "header  text-center",
     "mb-12",
-    "transition duration-500 ease-in-out",
-    shouldOpen && "opacity-0 transform scale-95 translate-y-4"
+    fadeBlipClassName(!shouldOpen)
+  );
+
+  const quicksearchItemClassName = classnames(
+    "inline-block m-1",
+    fadeBlipClassName(!shouldOpen)
   );
 
   return (
@@ -76,10 +94,10 @@ function App() {
         href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700&display=swap"
         rel="stylesheet"
       />
-      <div className="flex flex-col justify-start md:justify-center items-center h-screen w-screen flex-wrap bg-gradient-to-br  from-gray-100 to-gray-300 p-4  overflow-hidden">
+      <div className="flex flex-col justify-start md:justify-center items-center h-screen w-screen flex-wrap bg-gray-900 p-4  overflow-hidden text-white">
         <div className={headerClassName}>
-          <h1 className="mb-4 text-3xl font-extrabold">Roll Find</h1>
-          <p>Quick search of basically anything D&amp;D.</p>
+          <h1 className="mb-4 text-3xl font-extrabold">🎲 Roll Find</h1>
+          <p>Quick search of basically anything ⚔️ &nbsp;D&amp;D.</p>
         </div>
         <div className={className}>
           <div className="w-96 max-w-full relative">
@@ -96,6 +114,29 @@ function App() {
           isOpen={panelOpen}
           setPanelItem={setPanelItem}
         />
+        <div className="quick-search mt-16 text-center max-w-xl">
+          Or, try these:
+          <ul>
+            {QuickSearchOptions.map((option, index) => (
+              <li
+                key={option}
+                className={quicksearchItemClassName}
+                style={{
+                  transitionDelay: !shouldOpen ? index * 50 + "ms" : 0,
+                }}
+              >
+                <button
+                  type="button"
+                  onClick={() => setValue(option)}
+                  className="relative inline-block text-white p-1 px-3 text-sm font-bold group"
+                >
+                  <span className="relative z-10">{option}</span>
+                  <div className="absolute inset-0 bg-green-500 bg-opacity-40  rounded-lg transform duration-200 ease-in-out scale-1 group-hover:scale-105"></div>
+                </button>
+              </li>
+            ))}
+          </ul>
+        </div>
       </div>
     </>
   );
