@@ -15,7 +15,7 @@ const Input = ({ value, setSearch, setValue }) => {
   );
 
   return (
-    <div className="relative">
+    <div className="input relative">
       <input
         className={className}
         type="search"

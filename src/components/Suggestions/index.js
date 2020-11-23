@@ -8,6 +8,7 @@ const Suggestions = ({ data, setPanelItem, shouldOpen }) => {
   const hasResults = results?.length;
 
   const containerClass = classnames(
+    "suggestions",
     "absolute top-full inset-x-0 z-10",
     "overflow-auto",
     "rounded-xl mt-4",

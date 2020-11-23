@@ -6,18 +6,15 @@ import useFetchApi from "./hooks/useFetchApi";
 import Suggestions from "./components/Suggestions";
 import { classnames, fadeBlipClassName } from "./utils";
 import useDebouncedEffect from "./hooks/useDebouncedEffect";
+import QuickSearch from "./components/QuickSearch";
+import Header from "./components/Header";
+import usePrevious from "./hooks/usePrevious";
 
-const QuickSearchOptions = [
-  "Sleep",
-  "Suggestion",
-  "Potion of Healing",
-  "Fireball",
-  "Exhaustion",
-  "Starvation",
-  "Gnome",
-  "Orc",
-  "Kobold",
-  "Ogre",
+const ALLOWED_CLICK_TARGETS = [
+  ".panel",
+  ".input",
+  ".suggestions",
+  ".quick-search",
 ];
 
 const useValue = (initial) => useState(initial);
@@ -28,6 +25,7 @@ const usePanelOpen = (initial) => useState(initial);
 
 function App() {
   const [value, setValue] = useValue("");
+  const prevValue = usePrevious(value);
   const [search, setSearch] = useSearch("");
   const [shouldOpen, setShouldOpen] = useShouldOpen(true);
   const [panelItem, setPanelItem] = usePanelItem({});
@@ -38,10 +36,10 @@ function App() {
 
   useDebouncedEffect(
     () => {
-      setSearch(value);
+      if (value !== prevValue) setSearch(value);
     },
     400,
-    [value]
+    [prevValue]
   );
 
   useEffect(() => {
@@ -70,6 +68,26 @@ function App() {
 
   useEffect(() => setPanelOpen(false), [setPanelOpen, data]);
 
+  useEffect(() => {
+    const handleClose = (event) => {
+      const targets = ALLOWED_CLICK_TARGETS.map((classname) =>
+        document.querySelector(classname)
+      ).filter(Boolean);
+
+      if (!targets.some((target) => target.contains(event.target))) {
+        event.stopPropagation();
+        event.preventDefault();
+
+        // setPanelItem({});
+        setSearch("");
+      }
+    };
+
+    document.addEventListener("click", handleClose);
+
+    return () => document.removeEventListener("click", handleClose);
+  });
+
   const className = classnames(
     "flex justify-center",
     "w-full",
@@ -77,38 +95,10 @@ function App() {
     panelOpen && "md:pr-1/2"
   );
 
-  const headerClassName = classnames(
-    "header  text-center",
-    "mb-16",
-    fadeBlipClassName(!shouldOpen)
-  );
-
-  const quicksearchItemClassName = classnames(
-    "inline-block m-1",
-    fadeBlipClassName(!shouldOpen)
-  );
-
   return (
     <>
-      <link rel="preconnect" href="https://fonts.gstatic.com" />
-      <link
-        href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700&display=swap"
-        rel="stylesheet"
-      />
-      <link
-        href="https://fonts.googleapis.com/css2?family=Varela+Round&display=swap"
-        rel="stylesheet"
-      />
       <div className="flex flex-col justify-start md:justify-center items-center h-screen w-screen flex-wrap bg-gray-900 p-4  overflow-hidden text-white">
-        <div className={headerClassName}>
-          <h1 className="mb-6 text-6xl font-extrabold font-sans-special">
-            🎲 Roll Find
-          </h1>
-          <p className="text-xl mb-1">
-            Quick search of basically anything ⚔️ &nbsp;D&amp;D.
-          </p>
-          <p className="italic">Well, at least a lot of things...</p>
-        </div>
+        <Header shouldOpen={shouldOpen} />
         <div className={className}>
           <div className="w-96 max-w-full relative">
             <Input value={value} setSearch={setSearch} setValue={setValue} />
@@ -124,29 +114,7 @@ function App() {
           isOpen={panelOpen}
           setPanelItem={setPanelItem}
         />
-        <div className="quick-search mt-16 text-center max-w-xl">
-          Or, try these:
-          <ul className="mt-3">
-            {QuickSearchOptions.map((option, index) => (
-              <li
-                key={option}
-                className={quicksearchItemClassName}
-                style={{
-                  transitionDelay: !shouldOpen ? index * 50 + 400 + "ms" : 0,
-                }}
-              >
-                <button
-                  type="button"
-                  onClick={() => setValue(option)}
-                  className="relative inline-block text-white p-1 px-3 text-sm font-bold group"
-                >
-                  <span className="relative z-10">{option}</span>
-                  <div className="absolute inset-0 bg-green-500 bg-opacity-40  rounded-lg transform duration-200 ease-in-out scale-1 group-hover:scale-105"></div>
-                </button>
-              </li>
-            ))}
-          </ul>
-        </div>
+        <QuickSearch shouldOpen={shouldOpen} setValue={setValue} />
       </div>
     </>
   );
