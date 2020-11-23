@@ -47,7 +47,8 @@ module.exports = {
           .reduce((acc, cur) => ({ ...acc, ...cur }), {}),
       }),
       fontFamily: {
-        sans: ["Noto Sans", ...defaultTheme.fontFamily.sans],
+        "sans-special": ["Noto Sans", ...defaultTheme.fontFamily.sans],
+        sans: ["Varela Round", ...defaultTheme.fontFamily.sans],
       },
       fontSize: {
         "2xs": ["0.7rem", ".85rem"],

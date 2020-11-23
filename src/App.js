@@ -95,9 +95,15 @@ function App() {
         href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700&display=swap"
         rel="stylesheet"
       />
+      <link
+        href="https://fonts.googleapis.com/css2?family=Varela+Round&display=swap"
+        rel="stylesheet"
+      />
       <div className="flex flex-col justify-start md:justify-center items-center h-screen w-screen flex-wrap bg-gray-900 p-4  overflow-hidden text-white">
         <div className={headerClassName}>
-          <h1 className="mb-6 text-6xl font-extrabold">🎲 Roll Find</h1>
+          <h1 className="mb-6 text-6xl font-extrabold font-sans-special">
+            🎲 Roll Find
+          </h1>
           <p className="text-xl mb-1">
             Quick search of basically anything ⚔️ &nbsp;D&amp;D.
           </p>
