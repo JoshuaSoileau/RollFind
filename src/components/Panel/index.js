@@ -21,18 +21,20 @@ const Panel = ({ item, isOpen, setPanelItem }) => {
 
   const className = classnames(
     "panel",
-    "fixed z-20",
-    "transition-all duration-800 ease-in-out",
+    "fixed z-20 overflow-auto",
+    "transition-all duration-500 ease-in-out",
     "bottom-0 h-0 left-0 right-0 md:left-auto md:top-16 md:right-16 md:bottom-16 overflow-hidden",
-    "w-full md:w-0",
+    "w-full",
     "bg-gray-800 text-white",
-    "px-6 md:px-0  py-0 md:py-16",
+    "px-6 md:px-0",
     "rounded-t-3xl md:rounded-3xl",
-    isOpen && " h-2/3 md:h-auto md:w-1/2  md:px-12  py-12 pb-0"
+    isOpen && " h-2/3 md:h-auto md:w-1/2  md:px-12 pb-0",
+    !isOpen && "md:w-0"
   );
 
-  const contentClass = classnames(
-    "prose-sm flex flex-col flex-nowrap max-h-full white  h-full",
+  const containerClass = classnames(
+    "md:py-16",
+    "prose-sm flex flex-col",
     "transition-all duration-500 ease-in-out",
     isOpen && "opacity-1 scale-95 delay-100"
   );
@@ -57,8 +59,9 @@ const Panel = ({ item, isOpen, setPanelItem }) => {
         <span className="mb-4 w-6 h-1  block  bg-white transform rotate-45 origin-center" />
         <span className="mb-4 w-6 h-1  block  bg-white transform  -translate-y-5 -rotate-45 origin-center" />
       </button>
-      <div className={contentClass}>
-        <div className="flex flex-row items-start">
+      <div className={containerClass}>
+        {/* Panel Header */}
+        <div className="panel-header flex flex-row items-start">
           {icon ? (
             <span
               className={`inline-block w-1/4 md:w-1/6 mr-4 md:mr-12 ${getTypeInfo(
@@ -88,6 +91,8 @@ const Panel = ({ item, isOpen, setPanelItem }) => {
             </div>
           </div>
         </div>
+
+        {/* Panel Debugger */}
         {debug ? (
           <pre className="max-h-48 overflow-scroll bg-gray-700">
             <code>{JSON.stringify(item, 0, 4)}</code>
@@ -96,13 +101,14 @@ const Panel = ({ item, isOpen, setPanelItem }) => {
           ""
         )}
 
-        {/* The attribute tiles */}
+        {/* Attribute tiles */}
         <div className="grid grid-cols-3 md:grid-cols-6 gap-3 empty:hidden mt-6">
           {attributes.map((attr, index) => (
             <AttributeTile item={item} key={attr} name={attr} index={index} />
           ))}
         </div>
 
+        {/* Text content */}
         <h2 className="description font-extrabold flex-0">Description</h2>
         <div
           className="flex-1 overflow-scroll"
