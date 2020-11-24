@@ -27,7 +27,7 @@ const Panel = ({ item, isOpen, setPanelItem }) => {
     boxClass,
     "overflow-hidden",
     "pointer-events-none",
-    "fixed inset-0 top-56",
+    "fixed md:absolute inset-0 md:inset-y-12 top-56 md:top-12 md:right-12",
     "flex flex-col justify-between",
     fadeBlipClassName(isOpen)
   );
@@ -134,7 +134,7 @@ const Panel = ({ item, isOpen, setPanelItem }) => {
         {/* Close button */}
       </div>
       <button
-        className={`fixed top-64 md:top-24 right-8 md:right-24 text-white z-10 ${fadeBlipClassName(
+        className={`fixed md:absolute top-64 md:top-24 right-8 md:right-24 text-white z-10 ${fadeBlipClassName(
           isOpen
         )}`}
         onClick={() => setPanelItem({})}

@@ -107,7 +107,7 @@ function App() {
 
   const rightColClass = classnames(
     "max-h-full",
-    "fixed inset-0 top-56",
+    "fixed inset-0 top-56 md:top-auto",
     "md:relative",
     "flex flex-col items-center",
     "overflow-hidden",
