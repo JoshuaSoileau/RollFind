@@ -29,6 +29,7 @@ const Panel = ({ item, isOpen, setPanelItem }) => {
     "pointer-events-none",
     "fixed md:absolute inset-0 md:inset-y-12 top-56 md:top-12 md:right-12",
     "flex flex-col justify-between",
+    !isOpen && "md:translate-x-1/2",
     fadeBlipClassName(isOpen)
   );
 
