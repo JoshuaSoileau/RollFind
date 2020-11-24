@@ -13,7 +13,7 @@ const Input = ({ value, setValue, search, setSearch }) => {
   useEffect(() => {
     if (!search) return;
 
-    form.current?.requestSubmit() ||
+    form.current?.requestSubmit?.() ||
       form.current?.dispatchEvent(new Event("submit"));
   }, [search]);
 
