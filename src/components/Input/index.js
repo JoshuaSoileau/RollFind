@@ -1,12 +1,21 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { classnames } from "../../utils";
 
-const Input = ({ value, setSearch, setValue }) => {
+const Input = ({ value, setValue, search, setSearch }) => {
   const [isFocus, setIsFocus] = useState(false);
+
+  const form = useRef(null);
 
   useEffect(() => {
     setIsFocus(value.length >= 3);
   }, [value]);
+
+  useEffect(() => {
+    if (!search) return;
+
+    form.current?.requestSubmit() ||
+      form.current?.dispatchEvent(new Event("submit"));
+  }, [search]);
 
   const className = classnames(
     "w-full",
@@ -22,8 +31,9 @@ const Input = ({ value, setSearch, setValue }) => {
   );
 
   return (
-    <div className="input relative">
+    <form className="input relative" ref={form} action="#">
       <input
+        id="the-field"
         className={className}
         type="text"
         value={value}
@@ -59,7 +69,7 @@ const Input = ({ value, setSearch, setValue }) => {
           <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
         </svg>
       </span>
-    </div>
+    </form>
   );
 };
 

@@ -122,7 +122,12 @@ function App() {
           <Header shouldOpen={shouldOpen} />
           <div className={className}>
             <div className="w-96 max-w-full relative">
-              <Input value={value} setSearch={setSearch} setValue={setValue} />
+              <Input
+                search={search}
+                setSearch={setSearch}
+                value={value}
+                setValue={setValue}
+              />
               <Suggestions
                 data={data}
                 setPanelItem={setPanelItem}
