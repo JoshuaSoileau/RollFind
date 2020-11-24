@@ -22,5 +22,6 @@ export const newlineToPtag = (str) => {
 export const fadeBlipClassName = (condition) =>
   classnames(
     "transition duration-500 ease-in-out",
-    !condition && "opacity-0 transform scale-95 translate-y-4"
+    !condition &&
+      "opacity-0 transform scale-95 translate-y-4 pointer-events-none"
   );

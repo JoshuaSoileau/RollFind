@@ -91,30 +91,54 @@ function App() {
   const className = classnames(
     "flex justify-center relative z-10",
     "w-full transform duration-500 ease-in-out",
-    shouldOpen && "-translate-y-64 delay-100",
-    panelOpen && "md:pr-1/2"
+    shouldOpen && "-translate-y-64 delay-100"
+  );
+
+  const leftPanelClass = classnames(
+    "flex flex-col justify-start md:justify-center items-center flex-wrap",
+    "relative md:z-10",
+    "h-full max-h-screen  p-4",
+    "overflow-hidden",
+    "text-white",
+    "transition-all duration-700 ease-in-out transform",
+    !panelOpen && "md:translate-x-1/2",
+    panelOpen && "translate-x-0"
+  );
+
+  const rightColClass = classnames(
+    "max-h-full",
+    "fixed inset-0 top-56",
+    "md:relative",
+    "flex flex-col items-center",
+    "overflow-hidden",
+    "md:p-12 md:pl-0",
+    !panelOpen && "pointer-events-none"
   );
 
   return (
     <>
-      <div className="flex flex-col justify-start md:justify-center items-center h-screen w-screen flex-wrap bg-gray-900 p-4  overflow-hidden text-white">
-        <Header shouldOpen={shouldOpen} />
-        <div className={className}>
-          <div className="w-96 max-w-full relative">
-            <Input value={value} setSearch={setSearch} setValue={setValue} />
-            <Suggestions
-              data={data}
-              setPanelItem={setPanelItem}
-              shouldOpen={shouldOpen}
-            />
+      <div className="md:grid md:grid-cols-2 h-screen max-h-screen bg-gray-900 ">
+        <div className={leftPanelClass}>
+          <Header shouldOpen={shouldOpen} />
+          <div className={className}>
+            <div className="w-96 max-w-full relative">
+              <Input value={value} setSearch={setSearch} setValue={setValue} />
+              <Suggestions
+                data={data}
+                setPanelItem={setPanelItem}
+                shouldOpen={shouldOpen}
+              />
+            </div>
           </div>
+          <QuickSearch shouldOpen={shouldOpen} setValue={setValue} />
         </div>
-        <Panel
-          item={panelItem}
-          isOpen={panelOpen}
-          setPanelItem={setPanelItem}
-        />
-        <QuickSearch shouldOpen={shouldOpen} setValue={setValue} />
+        <div className={rightColClass}>
+          <Panel
+            item={panelItem}
+            isOpen={panelOpen}
+            setPanelItem={setPanelItem}
+          />
+        </div>
       </div>
     </>
   );

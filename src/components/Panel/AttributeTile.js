@@ -28,8 +28,8 @@ const colors = [
 const AttributeTile = ({ item, name, index }) => {
   const className = classnames(
     "attribute-tile",
-    "inline-block",
-    "py-2 rounded-xl",
+    "inline-flex flex-col items-center justify-center",
+    "p-2 px-4 rounded-xl md:min-w-1/6 max-w-1/2 md:max-w-1/3 mr-4 mb-4",
     "font-extrabold text-center",
     colors?.[index]?.[0] || "bg-purple-900"
   );
@@ -45,7 +45,7 @@ const AttributeTile = ({ item, name, index }) => {
       >
         {legiblize(name)}
       </span>
-      <span className="attribute-tile__value md:text-lg font-bold">
+      <span className="attribute-tile__value md:text-lg font-bold capitalize">
         {item?.[name] || ""}
       </span>
     </div>
