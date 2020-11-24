@@ -39,7 +39,7 @@ const AttributeTile = ({ item, name, index }) => {
   return (
     <div className={className}>
       <span
-        className={`attribute-tile__label text-2xs block font-bold ${
+        className={`attribute-tile__label text-2xs block font-bold capitalize ${
           colors?.[index]?.[1] || ""
         }`}
       >
