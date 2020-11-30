@@ -30,8 +30,18 @@ const Input = ({ value, setValue, search, setSearch }) => {
     isFocus && "border-pink-400"
   );
 
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    event.stopPropagation();
+  };
+
   return (
-    <form className="input relative" ref={form} action="#">
+    <form
+      className="input relative"
+      ref={form}
+      action="#"
+      onSubmit={handleSubmit}
+    >
       <input
         id="the-field"
         className={className}
