@@ -25,29 +25,32 @@ const colors = [
   ["bg-red-800", "text-red-300"],
 ];
 
-const AttributeTile = ({ item, name, index }) => {
+const AttributeTile = ({ item, name, index, size }) => {
   const className = classnames(
     "attribute-tile",
     "inline-flex flex-col items-center justify-center",
-    "p-2 px-4 rounded-xl md:min-w-1/6 max-w-1/2 md:max-w-1/3 mr-4 mb-4",
+    "p-2 px-4 rounded-xl md:min-w-1/6 max-w-full mr-4 mb-4",
     "font-extrabold text-center",
     colors?.[index]?.[0] || "bg-purple-900"
   );
 
   if (!item?.[name]) return "";
 
+  const labelClass = classnames(
+    "attribute-tile__label text-2xs block font-bold capitalize",
+    colors?.[index]?.[1] || ""
+  );
+
+  const valueClass = classnames(
+    "attribute-tile__value font-bold capitalize",
+    size === "sm" && "text-2xs",
+    size !== "sm" && "text-2xl"
+  );
+
   return (
     <div className={className}>
-      <span
-        className={`attribute-tile__label text-2xs block font-bold capitalize ${
-          colors?.[index]?.[1] || ""
-        }`}
-      >
-        {legiblize(name)}
-      </span>
-      <span className="attribute-tile__value md:text-lg font-bold capitalize">
-        {item?.[name] || ""}
-      </span>
+      <span className={labelClass}>{legiblize(name)}</span>
+      <span className={valueClass}>{item?.[name] || ""}</span>
     </div>
   );
 };
