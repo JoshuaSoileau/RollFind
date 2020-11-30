@@ -3,7 +3,7 @@ import AttributeTile from "./AttributeTile";
 
 const Tiles = ({ attributes, item, size }) => {
   return (
-    <div className="flex flex-wrap mt-8">
+    <div className="flex flex-wrap mt-8 empty:hidden">
       {attributes?.map((attr, index) => (
         <AttributeTile
           item={item}

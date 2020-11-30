@@ -117,7 +117,7 @@ function App() {
 
   return (
     <>
-      <div className="md:grid md:grid-cols-2 h-screen max-h-screen bg-gray-900 ">
+      <div className="md:grid md:grid-cols-2 h-screen min-h-screen bg-gray-900 ">
         <div className={leftPanelClass}>
           <Header shouldOpen={shouldOpen} />
           <div className={className}>
