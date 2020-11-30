@@ -36,8 +36,10 @@ const Panel = ({ item, isOpen, setPanelItem }) => {
     "px-4 md:px-16",
     "bg-gray-800 text-white",
     "overflow-auto",
+    "transition duration-300 ease-in-out"
     !isOpen && "md:translate-x-1/2",
-    fadeBlipClassName(isOpen)
+    fadeBlipClassName(isOpen),
+    !Object.keys(data).length && "opacity-0",
   );
 
   const contentClass = classnames(
