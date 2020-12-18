@@ -158,8 +158,16 @@ function App() {
             </p>
             <h3 tw="text-white! font-bold">Why?</h3>
             <p>
-              Because I got tired of looking up how many dice to roll for a
-              Potion of Greater Healing.
+              Because I got tired of looking up how many dice to roll for
+              a&nbsp;
+              <button
+                type="button"
+                onClick={() => setValue("Potion of Greater Healing")}
+                tw="font-extrabold! underline text-pink-500!"
+              >
+                Potion of Greater Healing
+              </button>
+              .
             </p>
             <h3 tw="text-white! font-bold">How?</h3>
             <p>

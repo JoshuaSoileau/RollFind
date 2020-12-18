@@ -3,7 +3,7 @@ import { classnames, fadeBlipClassName } from "../../utils";
 const QuickSearchOptions = [
   "Sleep",
   "Suggestion",
-  "Potion of Healing",
+  "Potion of healing",
   "Fireball",
   "Exhaustion",
   "Starvation",
@@ -11,6 +11,9 @@ const QuickSearchOptions = [
   "Orc",
   "Kobold",
   "Ogre",
+  "Deck of many things",
+  "Poison",
+  "Hideous laughter",
 ];
 
 const QuickSearch = ({ shouldOpen, setValue }) => {
