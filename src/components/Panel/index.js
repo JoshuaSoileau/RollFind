@@ -56,6 +56,14 @@ const Panel = ({ item, isOpen, setPanelItem }) => {
   );
 
   const text = data?.description || data?.text || data?.desc;
+  const hasStats = Boolean(
+    [...topAttributes, ...primaryAttributes]
+      .map((item) => data?.[item])
+      .filter(Boolean).length
+  );
+  const hasDetails = Boolean(
+    tertiaryAttributes.map((item) => data?.[item]).filter(Boolean).length
+  );
 
   const actions = data?.actions || [];
   const legendary_actions = data?.legendary_actions || [];
@@ -72,27 +80,52 @@ const Panel = ({ item, isOpen, setPanelItem }) => {
             <Header item={data} />
 
             {/* Stats */}
-            <h2 className="description  font-extrabold flex-0">Stats</h2>
-            <Tiles
-              item={data}
-              values={topAttributes.map((item) => ({
-                title: legiblize(item),
-                value: data?.[item],
-              }))}
-              size="lg"
-            />
-            <Tiles
-              item={data}
-              values={primaryAttributes.map((item) => ({
-                title: legiblize(item),
-                value: data?.[item],
-              }))}
-              size="lg"
-            />
+            {hasStats ? (
+              <>
+                <h2 className="description  font-extrabold flex-0">Stats</h2>
+                <Tiles
+                  item={data}
+                  values={topAttributes
+                    .map((item) => ({
+                      title: legiblize(item),
+                      value: data?.[item],
+                    }))
+                    .filter((item) => item.value)}
+                  size="lg"
+                />
+                <Tiles
+                  item={data}
+                  values={primaryAttributes
+                    .map((item) => ({
+                      title: legiblize(item),
+                      value: data?.[item],
+                    }))
+                    .filter((item) => item.value)}
+                  size="lg"
+                />
+              </>
+            ) : (
+              ""
+            )}
 
             {/* Details */}
-            <h2 className="description  font-extrabold flex-0">Details</h2>
-            <Tiles item={data} attributes={tertiaryAttributes} size="sm" />
+            {hasDetails ? (
+              <>
+                <h2 className="description  font-extrabold flex-0">Details</h2>
+                <Tiles
+                  item={data}
+                  values={tertiaryAttributes
+                    .map((item) => ({
+                      title: item,
+                      value: data?.[item],
+                    }))
+                    .filter((item) => item.value)}
+                  size="sm"
+                />
+              </>
+            ) : (
+              ""
+            )}
 
             {/* Actions */}
             {hasActions ? (
