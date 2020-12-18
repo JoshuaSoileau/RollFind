@@ -1,6 +1,8 @@
 import React from "react";
+import Markdown from "markdown-to-jsx";
+
 import useResource from "../../hooks/useResource";
-import { classnames, fadeBlipClassName, newlineToPtag } from "../../utils";
+import { classnames, fadeBlipClassName } from "../../utils";
 import Table from "../Table";
 import Close from "./Close";
 import Gradients from "./Gradients";
@@ -24,6 +26,9 @@ const tertiaryAttributes = [
   "dnd_class",
   "rarity",
   "languages",
+  "duration",
+  "concentration",
+  "range",
 ];
 
 const Panel = ({ item, isOpen, setPanelItem }) => {
@@ -50,7 +55,11 @@ const Panel = ({ item, isOpen, setPanelItem }) => {
     isOpen && "opacity-1 scale-95 delay-100"
   );
 
-  const text = newlineToPtag(data?.description || data?.text || data?.desc);
+  const text = data?.description || data?.text || data?.desc;
+
+  const actions = data?.actions || [];
+  const legendary_actions = data?.legendary_actions || [];
+  const hasActions = Boolean(actions.length + legendary_actions.length);
 
   return (
     <>
@@ -61,22 +70,82 @@ const Panel = ({ item, isOpen, setPanelItem }) => {
         <div className="relative">
           <div className={contentClass}>
             <Header item={data} />
+
+            {/* Stats */}
+            <h2 className="description  font-extrabold flex-0">Stats</h2>
             <Tiles item={data} attributes={topAttributes} size="lg" />
             <Tiles item={data} attributes={primaryAttributes} size="lg" />
+
+            {/* Details */}
             <h2 className="description  font-extrabold flex-0">Details</h2>
             <Tiles item={data} attributes={tertiaryAttributes} size="sm" />
 
-            <Table
-              rows={[
-                "test",
-                "test2",
-                "test3",
-                "test4",
-                "test5",
-                "test6",
-                "test7",
-              ]}
-            />
+            {/* Actions */}
+            {hasActions ? (
+              <>
+                <h3 tw="text-sm font-extrabold flex-0">Actions</h3>
+                <Table
+                  rows={[
+                    ...actions.map(
+                      (item) =>
+                        item && {
+                          title: item?.name,
+                          content: item?.desc,
+                        }
+                    ),
+                    ...legendary_actions.map(
+                      (item) =>
+                        item && {
+                          title: `${item?.name} (legendary)`,
+                          content: item?.desc,
+                        }
+                    ),
+                  ]}
+                />
+              </>
+            ) : (
+              ""
+            )}
+
+            {/* Abilities */}
+            {data?.special_abilities ? (
+              <>
+                <h3 tw="text-sm font-extrabold flex-0">Abilities</h3>
+                <Table
+                  rows={[
+                    ...(data?.special_abilities || []).map(
+                      (item) =>
+                        item && {
+                          title: item?.name,
+                          content: item?.desc,
+                        }
+                    ),
+                  ]}
+                />
+              </>
+            ) : (
+              ""
+            )}
+
+            {/* Reactions */}
+            {data?.reactions ? (
+              <>
+                <h3 tw="text-sm font-extrabold flex-0">Reactions</h3>
+                <Table
+                  rows={[
+                    ...(data?.reactions || []).map(
+                      (item) =>
+                        item && {
+                          title: item?.name,
+                          content: item?.desc,
+                        }
+                    ),
+                  ]}
+                />
+              </>
+            ) : (
+              ""
+            )}
 
             {/* Text content */}
             {text ? (
@@ -84,7 +153,7 @@ const Panel = ({ item, isOpen, setPanelItem }) => {
                 <h2 className="description font-extrabold flex-0">
                   Description
                 </h2>
-                <div dangerouslySetInnerHTML={{ __html: text }} />
+                <Markdown options={{ forceBlock: true }}>{text}</Markdown>
               </>
             ) : (
               ""

@@ -12,4 +12,11 @@
   font-family: "Noto Sans";
 }
 
+th {
+  min-width: 100px;
+  text-align: left;
+  padding-bottom: 20px;
+  padding-top: 20px;
+}
+
 @tailwind utilities;
