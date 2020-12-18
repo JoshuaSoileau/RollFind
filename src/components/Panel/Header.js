@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { getTypeInfo } from "../Suggestions/constants/types";
 
-const Header = ({ item }) => {
+const Header = ({ details, item }) => {
   const [debug, setDebug] = useState(false);
   const icon = getTypeInfo(item?.route, "icon");
   const panelTypeClass = [
@@ -15,7 +15,7 @@ const Header = ({ item }) => {
 
   return (
     <>
-      <div className="panel-header flex flex-row items-start">
+      <div className="panel-header flex flex-row detailss-start">
         {icon ? (
           <span
             className={`inline-block w-1/4 md:w-1/6 mr-4 md:mr-12 ${getTypeInfo(
@@ -33,7 +33,7 @@ const Header = ({ item }) => {
         )}
         <div className="inline-flex flex-col relative">
           <h1 className="headline font-bold flex-auto">
-            {item?.name || item?.slug}
+            {details?.name || details?.slug}
           </h1>
           <div className="inline-flex flex-row">
             <div className={panelTypeClass}>
@@ -49,7 +49,7 @@ const Header = ({ item }) => {
       {/* Panel Debugger */}
       {debug ? (
         <pre className="max-h-96 overflow-scroll bg-gray-700">
-          <code>{JSON.stringify(item, 0, 4)}</code>
+          <code>{JSON.stringify(details, 0, 4)}</code>
         </pre>
       ) : (
         ""

@@ -15,7 +15,7 @@ const QuickSearchOptions = [
 
 const QuickSearch = ({ shouldOpen, setValue }) => {
   const containerClass = classnames(
-    "quick-search mt-16 text-center max-w-xl",
+    "quick-search mt-16 text-center max-w-xl mx-auto",
     shouldOpen && "pointer-events-none",
     fadeBlipClassName(!shouldOpen)
   );

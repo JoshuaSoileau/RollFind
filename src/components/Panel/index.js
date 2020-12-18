@@ -39,7 +39,7 @@ const Panel = ({ item, isOpen, setPanelItem }) => {
     boxClass,
     "panel",
     "w-full h-full max-h-full",
-    "px-4 md:px-16",
+    "px-4 lg:px-16",
     "bg-gray-800 text-white",
     "overflow-auto",
     "transition duration-300 ease-in-out",
@@ -77,7 +77,7 @@ const Panel = ({ item, isOpen, setPanelItem }) => {
       <div className={containerClassName}>
         <div className="relative">
           <div className={contentClass}>
-            <Header item={data} />
+            <Header item={item} details={data} />
 
             {/* Stats */}
             {hasStats ? (
