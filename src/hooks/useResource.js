@@ -35,7 +35,7 @@ const useResource = (item) => {
     return function cancel() {
       abortController.abort();
     };
-  }, [item?.slug]);
+  }, [item, item?.slug]);
 
   return response;
 };
