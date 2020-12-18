@@ -1,6 +1,7 @@
 import React from "react";
 import useResource from "../../hooks/useResource";
 import { classnames, fadeBlipClassName, newlineToPtag } from "../../utils";
+import Table from "../Table";
 import Close from "./Close";
 import Gradients from "./Gradients";
 import Header from "./Header";
@@ -65,9 +66,29 @@ const Panel = ({ item, isOpen, setPanelItem }) => {
             <h2 className="description  font-extrabold flex-0">Details</h2>
             <Tiles item={data} attributes={tertiaryAttributes} size="sm" />
 
+            <Table
+              rows={[
+                "test",
+                "test2",
+                "test3",
+                "test4",
+                "test5",
+                "test6",
+                "test7",
+              ]}
+            />
+
             {/* Text content */}
-            <h2 className="description font-extrabold flex-0">Description</h2>
-            <div dangerouslySetInnerHTML={{ __html: text }} />
+            {text ? (
+              <>
+                <h2 className="description font-extrabold flex-0">
+                  Description
+                </h2>
+                <div dangerouslySetInnerHTML={{ __html: text }} />
+              </>
+            ) : (
+              ""
+            )}
           </div>
         </div>
       </div>
