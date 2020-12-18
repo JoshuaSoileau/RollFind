@@ -1,14 +1,14 @@
 import React from "react";
 import AttributeTile from "./AttributeTile";
 
-const Tiles = ({ attributes, item, size }) => {
+const Tiles = ({ values, size }) => {
   return (
     <div className="flex flex-wrap mt-8 empty:hidden">
-      {attributes?.map((attr, index) => (
+      {values?.map((item, index) => (
         <AttributeTile
-          item={item}
-          key={attr}
-          name={attr}
+          key={item?.title}
+          title={item?.title}
+          value={item?.value}
           index={index}
           size={size}
         />

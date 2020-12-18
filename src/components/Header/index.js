@@ -4,7 +4,7 @@ import { classnames, fadeBlipClassName } from "../../utils";
 const Header = ({ shouldOpen }) => {
   const headerClassName = classnames(
     "header  text-center",
-    "mb-16",
+    "mb-12",
     fadeBlipClassName(!shouldOpen)
   );
   return (
@@ -25,10 +25,11 @@ const Header = ({ shouldOpen }) => {
           &nbsp;
           <span className="text-red-300">Find</span>
         </h1>
-        <p className="text-xl mb-1">
-          Quick search of basically anything ⚔️ &nbsp;D&amp;D.
+        <p className="text-xl mb-12">
+          Quick search of ⚔️ &nbsp;D&amp;D rules, <br />
+          stats, details, and general info.
         </p>
-        <p className="italic">Well, at least a lot of things...</p>
+        <p>Simply type in the field below...</p>
       </div>
     </>
   );

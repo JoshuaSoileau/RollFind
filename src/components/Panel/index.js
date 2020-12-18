@@ -2,7 +2,7 @@ import React from "react";
 import Markdown from "markdown-to-jsx";
 
 import useResource from "../../hooks/useResource";
-import { classnames, fadeBlipClassName } from "../../utils";
+import { classnames, legiblize, fadeBlipClassName } from "../../utils";
 import Table from "../Table";
 import Close from "./Close";
 import Gradients from "./Gradients";
@@ -73,8 +73,22 @@ const Panel = ({ item, isOpen, setPanelItem }) => {
 
             {/* Stats */}
             <h2 className="description  font-extrabold flex-0">Stats</h2>
-            <Tiles item={data} attributes={topAttributes} size="lg" />
-            <Tiles item={data} attributes={primaryAttributes} size="lg" />
+            <Tiles
+              item={data}
+              values={topAttributes.map((item) => ({
+                title: legiblize(item),
+                value: data?.[item],
+              }))}
+              size="lg"
+            />
+            <Tiles
+              item={data}
+              values={primaryAttributes.map((item) => ({
+                title: legiblize(item),
+                value: data?.[item],
+              }))}
+              size="lg"
+            />
 
             {/* Details */}
             <h2 className="description  font-extrabold flex-0">Details</h2>

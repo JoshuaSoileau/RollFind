@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "Rollfind",
+  "name": "Quick lookup of DnD rules, stats, etc.",
   "icons": [
     {
       "src": "favicon.ico",

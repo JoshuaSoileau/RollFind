@@ -1,5 +1,5 @@
 import React from "react";
-import { classnames, legiblize } from "../../utils";
+import { classnames } from "../../utils";
 
 const colors = [
   ["bg-pink-800", "text-pink-300"],
@@ -25,7 +25,7 @@ const colors = [
   ["bg-red-800", "text-red-300"],
 ];
 
-const AttributeTile = ({ item, name, index, size }) => {
+const AttributeTile = ({ title, value, index, size }) => {
   const className = classnames(
     "attribute-tile",
     "inline-flex flex-col items-center justify-center",
@@ -33,8 +33,6 @@ const AttributeTile = ({ item, name, index, size }) => {
     "font-extrabold text-center",
     colors?.[index]?.[0] || "bg-purple-900"
   );
-
-  if (!item?.[name]) return "";
 
   const labelClass = classnames(
     "attribute-tile__label text-2xs block font-bold capitalize",
@@ -49,8 +47,8 @@ const AttributeTile = ({ item, name, index, size }) => {
 
   return (
     <div className={className}>
-      <span className={labelClass}>{legiblize(name)}</span>
-      <span className={valueClass}>{item?.[name] || ""}</span>
+      <span className={labelClass}>{title}</span>
+      <span className={valueClass}>{value}</span>
     </div>
   );
 };
