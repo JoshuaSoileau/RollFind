@@ -130,7 +130,7 @@ const Panel = ({ item, isOpen, setPanelItem }) => {
             {/* Actions */}
             {hasActions ? (
               <>
-                <h3 tw="text-sm font-extrabold flex-0">Actions</h3>
+                <h3 className="text-sm font-extrabold flex-0">Actions</h3>
                 <Table
                   rows={[
                     ...actions.map(
@@ -157,7 +157,7 @@ const Panel = ({ item, isOpen, setPanelItem }) => {
             {/* Abilities */}
             {data?.special_abilities ? (
               <>
-                <h3 tw="text-sm font-extrabold flex-0">Abilities</h3>
+                <h3 className="text-sm font-extrabold flex-0">Abilities</h3>
                 <Table
                   rows={[
                     ...(data?.special_abilities || []).map(
@@ -177,7 +177,7 @@ const Panel = ({ item, isOpen, setPanelItem }) => {
             {/* Reactions */}
             {data?.reactions ? (
               <>
-                <h3 tw="text-sm font-extrabold flex-0">Reactions</h3>
+                <h3 className="text-sm font-extrabold flex-0">Reactions</h3>
                 <Table
                   rows={[
                     ...(data?.reactions || []).map(

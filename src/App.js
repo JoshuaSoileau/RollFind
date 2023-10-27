@@ -1,4 +1,3 @@
-import "twin.macro";
 import "./styles/tailwind.css";
 import Input from "./components/Input";
 import Panel from "./components/Panel";
@@ -11,6 +10,8 @@ import QuickSearch from "./components/QuickSearch";
 import Header from "./components/Header";
 import usePrevious from "./hooks/usePrevious";
 import Octocat from "./components/Octocat";
+
+import "./tailwind.css";
 
 const ALLOWED_CLICK_TARGETS = [
   "a",
@@ -151,32 +152,32 @@ function App() {
           </div>
           <QuickSearch shouldOpen={shouldOpen} setValue={setValue} />
           <div className={howClass}>
-            <h3 tw="text-white! font-bold">What?</h3>
+            <h3 className="text-white! font-bold">What?</h3>
             <p>
               I've been wanting a tool that's just a single input field, that I
               can use to quickly look up things during DnD sessions.
             </p>
-            <h3 tw="text-white! font-bold">Why?</h3>
+            <h3 className="text-white! font-bold">Why?</h3>
             <p>
               Because I got tired of looking up how many dice to roll for
               a&nbsp;
               <button
                 type="button"
                 onClick={() => setValue("Potion of Greater Healing")}
-                tw="font-extrabold! underline text-pink-500!"
+                className="font-extrabold! underline text-pink-500!"
               >
                 Potion of Greater Healing
               </button>
               .
             </p>
-            <h3 tw="text-white! font-bold">How?</h3>
+            <h3 className="text-white! font-bold">How?</h3>
             <p>
               This tool is really just a fancy wrapper around{" "}
               <a
                 href="https://www.open5e.com"
                 target="_blank"
                 rel="noreferrer"
-                tw="font-extrabold! underline text-pink-500!"
+                className="font-extrabold! underline text-pink-500!"
               >
                 Open5e.com
               </a>
@@ -187,7 +188,7 @@ function App() {
               Click on the octocat on the top right hand corner to see all the
               source code.
             </p>
-            <h3 tw="text-white! font-bold">
+            <h3 className="text-white! font-bold">
               But here's the TLDR, it's built with:
             </h3>
             <ul>
@@ -196,7 +197,7 @@ function App() {
                   href="https://www.open5e.com"
                   target="_blank"
                   rel="noreferrer"
-                  tw="font-extrabold! underline text-pink-500!"
+                  className="font-extrabold! underline text-pink-500!"
                 >
                   Open5e
                 </a>
@@ -206,7 +207,7 @@ function App() {
                   href="https://reactjs.org/"
                   target="_blank"
                   rel="noreferrer"
-                  tw="font-extrabold! underline text-pink-500!"
+                  className="font-extrabold! underline text-pink-500!"
                 >
                   React
                 </a>
@@ -215,7 +216,7 @@ function App() {
                   href="https://github.com/facebook/create-react-app"
                   target="_blank"
                   rel="noreferrer"
-                  tw="font-extrabold! underline text-pink-500!"
+                  className="font-extrabold! underline text-pink-500!"
                 >
                   create-react-app
                 </a>
@@ -225,41 +226,31 @@ function App() {
                   href="https://www.tailwindcss.com"
                   target="_blank"
                   rel="noreferrer"
-                  tw="font-extrabold! underline text-pink-500!"
+                  className="font-extrabold! underline text-pink-500!"
                 >
                   Tailwind CSS
                 </a>
               </li>
               <li>
-                <a
-                  href="https://github.com/ben-rogerson/twin.macro"
-                  target="_blank"
-                  rel="noreferrer"
-                  tw="font-extrabold! underline text-pink-500!"
-                >
-                  Twin.Macro
-                </a>
-              </li>
-              <li>
                 and is hosted on&nbsp;
                 <a
-                  href="https://www.netlify.com"
+                  href="https://www.vercel.com"
                   target="_blank"
                   rel="noreferrer"
-                  tw="font-extrabold! underline text-pink-500!"
+                  className="font-extrabold! underline text-pink-500!"
                 >
-                  Netlify
+                  Vercel
                 </a>
               </li>
             </ul>
-            <h3 tw="text-white! font-bold">Who am I?</h3>
+            <h3 className="text-white! font-bold">Who am I?</h3>
             <p>
               Hi, I'm{" "}
               <a
                 href="https://twitter.com/joshua_soileau"
                 target="_blank"
                 rel="noreferrer"
-                tw="font-extrabold! underline text-pink-500!"
+                className="font-extrabold! underline text-pink-500!"
               >
                 Josh
               </a>
@@ -267,9 +258,11 @@ function App() {
             </p>
             <p>
               I made this with
-              <span tw="mx-4">💢</span>
+              <span className="mx-4">💢</span>
               and
-              <strong tw="text-white! inline-block ml-4">(╯°□°)╯︵ ┻━┻</strong>
+              <strong className="text-white! inline-block ml-4">
+                (╯°□°)╯︵ ┻━┻
+              </strong>
             </p>
           </div>
         </div>

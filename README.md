@@ -24,5 +24,4 @@ source code.
 - Open5e
 - React & create-react-app
 - Tailwind CSS
-- Twin.Macro
-- and is hosted on Netlify
+- and is hosted on Vercel
